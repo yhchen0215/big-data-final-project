@@ -1,6 +1,6 @@
-import sxtwl, pandas
+import sxtwl, pandas, json
 
-INPUT_FILE = 'data/egg_price_raw.csv'
+INPUT_FILE = 'data/egg_price_raw.json'
 OUTPUT_FILE = 'data/EGG_PRICE.csv'
 
 def getLunarDate(row):
@@ -8,7 +8,10 @@ def getLunarDate(row):
     day = sxtwl.fromSolar(int(year), int(month), int(date))
     return f'{str(day.getLunarMonth()).zfill(2)}{str(day.getLunarDay()).zfill(2)}'
 
-df = pandas.read_csv(INPUT_FILE, encoding='utf-8')
+f = open(INPUT_FILE, encoding="utf-8")
+dataFromJson = json.load(f)
+df = pandas.json_normalize(dataFromJson)
+
 df = df.rename({'白肉雞(2.0Kg以上)': 'white_broiler_big', '白肉雞(1.75-1.95Kg)': 'white_broiler_mid', '白肉雞(門市價高屏)': 'white_broiler_retail', '雞蛋(產地)': 'egg_price'}, axis=1)
 df['month'] = df.apply(lambda row: f'{row.日期[0:4]}{row.日期[5:7]}', axis=1)
 df['date'] = df.apply(lambda row: f'{row.日期[8:10]}', axis=1)
