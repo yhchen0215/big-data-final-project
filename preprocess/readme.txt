@@ -10,13 +10,15 @@ EGG_PRICE:
 
     另外計算農曆日期(xxxx ex.1129)，原本的表示方法不好使用或有錯
     日期缺失: 20130401已補上
-    區間: 20101101-20220321
+    資料刪除: 201010的資料只有10天左右且不連續，所以排除掉
+    區間: 20101101-20220520
 
 WEED_PRICE:
     month | corn_price | rice_price | bran_price | soy_price | fish_meal_price | chicken_feed_price
 
     重新下載一份比較完整好整理的檔案
     區間: 198101-202202
+    新資料來源: http://price.naif.org.tw/
 
 EGG_PRODUCTION:
     month | 入中雞雛數 | 產蛋隻數 | 均日產蛋箱數 | 年產蛋數 | 淘汰隻數 | 目前換羽隻數
@@ -27,12 +29,12 @@ EGG_PRODUCTION:
 WEATHER:
     month | date | avg_temperature | max_temperature | min_temperature | rainfall | sunshine
 
-    區間: 20000101-20220411
+    區間: 20000101-20220520
 
 AVIAN_INFLUENZA:
     month | amount
 
-    區間: 201501-202202
+    區間: 201501-202204
 
 COVID:
     month | date | total_cases | new_cases | total_deaths | new_deaths | positive_rate
